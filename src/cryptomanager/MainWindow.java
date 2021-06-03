@@ -1,20 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cryptomanager;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import basedatos.BaseDatos;
 import clases.Usuario;
-import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.Timer;
 
 /**
@@ -29,20 +21,24 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
     public MainWindow() 
     {
         initComponents();
-        initTimer();
-        
-        lblInfoLogin.setVisible(false);
-        setTitle("Cripto Gestor");
+        //initTimer();
+        initLabels();
+        setTitle("Crypto Manager");
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setVisible(true);
     }
     
-    private void initTimer()
+    public void initLabels()
+    {
+        lblInfoLogin.setVisible(false);
+    }
+    
+    /*private void initTimer()
     {
         timer = new Timer(DELAY, this);
         timer.start();
-    }
+    }*/
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -160,9 +156,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         usuario.setUsuario(txtUser.getText());
         usuario.setPassword(txtPassword.getText());
 
-        /*JLabel infoLoginLabel = new JLabel();
-        infoLoginLabel.setBounds(200, 200, 300, 100);*/
-        
         try 
         {
             BaseDatos bd = new BaseDatos();
@@ -186,7 +179,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
-        new MainWindow();
     }//GEN-LAST:event_enterButtonMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
