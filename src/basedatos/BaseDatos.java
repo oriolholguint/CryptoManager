@@ -28,7 +28,15 @@ public class BaseDatos
         conn.close();
     }
     
-    public boolean comprobarLogin(Usuario usuario) throws SQLException
+    /**
+     * Comprueba que el objeto usuario con los atributos username y password sean 
+     * el mismo que algun registro de la base de datos para permitir el inicio de
+     * sesion.
+     * @param usuario objeto con los atributos a comprobar.
+     * @return TRUE = si coincide el usuario con alguno de la base de datos.
+     * @throws SQLException 
+     */
+    public boolean checkLogin(Usuario usuario) throws SQLException
     {
         boolean loginCorrecto = false;
         String username;
@@ -53,6 +61,13 @@ public class BaseDatos
         return loginCorrecto;
     }
     
+    /**
+     * Comprueba que el username dado por parametros coincida con algun registro
+     * de la base de datos.
+     * @param username nombre de usuario a buscar en la base de datos.
+     * @return TRUE = si el nombre de usuario coincide con alguno de la base de datos.
+     * @throws SQLException 
+     */
     public boolean checkUserRegister(String username) throws SQLException
     {
         boolean exists = false;
@@ -74,5 +89,29 @@ public class BaseDatos
         }
         
         return exists;
+    }
+    
+    /***
+     * Crea un registro en la base de datos en la tabla usuario.
+     * @param usuario objeto de usuario con los atributos del registro a añadir.
+     * @throws SQLException 
+     */
+    public void createUser(Usuario usuario) throws SQLException
+    {
+        String query = "INSERT INTO usuario VALUES(?, ?)";
+        
+        PreparedStatement st = conn.prepareStatement(query);
+        
+        st.setString(1, usuario.getUsuario());
+        st.setString(2, usuario.getPassword());
+        
+        if(st.executeUpdate() != 0)
+        {
+            System.out.println("Usuario registrado correctamente");
+        }
+        else
+        {
+            System.out.println("Usuario no registrado");
+        }
     }
 }

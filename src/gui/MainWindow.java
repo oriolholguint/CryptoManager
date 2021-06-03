@@ -181,7 +181,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
 
             boolean loginCorrecto;
 
-            loginCorrecto = bd.comprobarLogin(usuario);
+            loginCorrecto = bd.checkLogin(usuario);
 
             if(loginCorrecto)
             {
