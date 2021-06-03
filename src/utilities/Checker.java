@@ -9,6 +9,11 @@ import java.util.regex.Pattern;
  */
 public class Checker 
 {
+    /**
+     * Comprueba que el email cumpla con el patron indicado.
+     * @param email correo electronico a comprobar.
+     * @return TRUE = si cumple el patron.
+     */
     public static boolean checkEmail(String email)
     {
         Pattern VALID_EMAIL_REGEX = Pattern.compile

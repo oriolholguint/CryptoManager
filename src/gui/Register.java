@@ -149,8 +149,8 @@ public class Register extends javax.swing.JDialog
     private void btnRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegisterMouseClicked
         
         boolean usernameExists = false;
-        boolean samePasswords = false;
-        boolean correctEmail = false;
+        boolean samePasswords;
+        boolean correctEmail;
         
         //Se comprueba que en la base de datos el username no exista.
         try
@@ -168,12 +168,14 @@ public class Register extends javax.swing.JDialog
         }        
         
         //Se comprueba que las dos contraseñas sean iguales
-        samePasswords = txtPassword.equals(txtConfirmPassword);
+        char password [] = txtPassword.getPassword();
+        char confirmPassword [] = txtConfirmPassword.getPassword();
+        samePasswords = checkSamePasswords(password, confirmPassword);
         
         //Se comprueba que el email introducido sea correcto     
         correctEmail = Checker.checkEmail(txtEmail.getText());
         
-        if(!usernameExists || !samePasswords || correctEmail)
+        if(!usernameExists && samePasswords && correctEmail)
         {
             lblInfoRegister.setText("Usuario registrado correctamente");
             lblInfoRegister.setVisible(true);
@@ -185,6 +187,33 @@ public class Register extends javax.swing.JDialog
         }
     }//GEN-LAST:event_btnRegisterMouseClicked
 
+    /**
+     * Comprueba que dos contraseñas de JFieldPassword sean iguales.
+     * @param password primera contraseña a comprobar.
+     * @param confirmPassword segunda contraseña a comprobar.
+     * @return TRUE = si las contraseñas son iguales.
+     */
+    public static boolean checkSamePasswords(char password [], char confirmPassword [])
+    {
+        boolean samePasswords = false;
+        int i = 0;
+
+        if(password.length == confirmPassword.length)
+        {
+            samePasswords = true;
+            while(i < password.length && samePasswords)
+            {
+                if(password[i] != confirmPassword[i])
+                {
+                    samePasswords = false;
+                }
+                i++;
+            }
+        }
+        
+        return samePasswords;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegister;
     private javax.swing.JPanel jPanel1;
