@@ -1,5 +1,8 @@
 package gui;
 
+import basedatos.BaseDatos;
+import java.sql.SQLException;
+import utilities.Checker;
 import utilities.WindowUtilities;
 
 /**
@@ -37,7 +40,7 @@ public class Register extends javax.swing.JDialog
         txtEmail = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
         txtConfirmPassword = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        btnRegister = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -53,7 +56,12 @@ public class Register extends javax.swing.JDialog
         lblEmail.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblEmail.setText("Email");
 
-        jButton1.setText("Registrarse");
+        btnRegister.setText("Registrarse");
+        btnRegister.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRegisterMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -71,12 +79,11 @@ public class Register extends javax.swing.JDialog
                         .addGap(0, 2, Short.MAX_VALUE)))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtUsername)
-                        .addComponent(txtPassword)
-                        .addComponent(txtEmail)
-                        .addComponent(txtConfirmPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
+                    .addComponent(btnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                    .addComponent(txtUsername)
+                    .addComponent(txtPassword)
+                    .addComponent(txtEmail)
+                    .addComponent(txtConfirmPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
                 .addGap(45, 45, 45))
         );
         jPanel1Layout.setVerticalGroup(
@@ -99,7 +106,7 @@ public class Register extends javax.swing.JDialog
                     .addComponent(lblEmail)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnRegister)
                 .addContainerGap(68, Short.MAX_VALUE))
         );
 
@@ -117,8 +124,38 @@ public class Register extends javax.swing.JDialog
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegisterMouseClicked
+        
+        boolean usernameExists = false;
+        boolean samePasswords = false;
+        boolean correctEmail = false;
+        
+        //Se comprueba que en la base de datos el username no exista.
+        try
+        {
+            BaseDatos bd = new BaseDatos();
+            
+            usernameExists = bd.checkUserRegister(txtUsername.getText());
+                        
+            bd.close();
+            
+        }
+        catch(SQLException ex)
+        {
+            System.out.println("No se ha podido acceder a la base de datos.");
+        }        
+        
+        //Se comprueba que las dos contraseñas sean iguales
+        samePasswords = txtPassword.equals(txtConfirmPassword);
+        
+        //Se comprueba que el email introducido sea correcto     
+        correctEmail = Checker.checkEmail(txtEmail.getText());
+        
+        
+    }//GEN-LAST:event_btnRegisterMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnRegister;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblConfirmPassword;
     private javax.swing.JLabel lblEmail;

@@ -193,6 +193,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
                 lblInfoLogin.setText("Login incorrecto");
                 lblInfoLogin.setVisible(true);
             }
+            
+            bd.close();
         } 
         catch (SQLException ex) 
         {

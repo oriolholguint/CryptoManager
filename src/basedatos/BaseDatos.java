@@ -53,7 +53,7 @@ public class BaseDatos
         return loginCorrecto;
     }
     
-    public boolean com(String username) throws SQLException
+    public boolean checkUserRegister(String username) throws SQLException
     {
         boolean exists = false;
         String usernameAux;

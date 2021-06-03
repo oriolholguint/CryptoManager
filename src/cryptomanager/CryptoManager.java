@@ -16,6 +16,6 @@ public class CryptoManager
     {
         
         new MainWindow();
-        
+
     }
 }
