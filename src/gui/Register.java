@@ -172,10 +172,11 @@ public class Register extends javax.swing.JDialog
         
         if(!usernameExists && samePasswords && correctEmail)
         {
-            lblInfoRegister.setText("Usuario registrado correctamente");
-            lblInfoRegister.setVisible(true);
             usuario = new Usuario(txtUsername.getText(), String.valueOf(password));
             createUser(usuario);
+            lblInfoRegister.setText("Usuario registrado correctamente");
+            lblInfoRegister.setVisible(true);
+            this.dispose();
         }
         else
         {
