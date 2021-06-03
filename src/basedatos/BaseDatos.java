@@ -52,4 +52,27 @@ public class BaseDatos
         
         return loginCorrecto;
     }
+    
+    public boolean com(String username) throws SQLException
+    {
+        boolean exists = false;
+        String usernameAux;
+        
+        String query = "SELECT * FROM usuario WHERE usuario = ?";
+        PreparedStatement st = conn.prepareStatement(query);
+        
+        st.setString(1, username);
+        
+        ResultSet rs = st.executeQuery();
+        while(rs.next())
+        {
+            usernameAux = rs.getString("usuario");
+            if(usernameAux.equals(username))
+            {
+                exists = true;
+            }
+        }
+        
+        return exists;
+    }
 }
