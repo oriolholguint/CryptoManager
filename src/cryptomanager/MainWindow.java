@@ -29,7 +29,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         this.setVisible(true);
     }
     
-    public void initLabels()
+    private void initLabels()
     {
         lblInfoLogin.setVisible(false);
     }
@@ -196,7 +196,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
     @Override
     public void actionPerformed(ActionEvent ae) 
     {
-        //System.out.println("YES");
+
     }
 
 }
