@@ -1,5 +1,7 @@
 package cryptomanager;
 
+import gui.MainWindow;
+
 /**
  *
  * @author Oriol Holguin <oriolholguint@gmail.com>
