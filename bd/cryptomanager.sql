@@ -43,11 +43,14 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `id` int unsigned auto_increment,
   `usuario` varchar(15) NOT NULL,
   `password` varchar(20) DEFAULT NULL,
+  `email` varchar(255) not null,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*
 03/06/2021
 se ha añadido la columna id y la primary key ahora es la id en vez de el nombre
+04/06/2021
+Se ha añadido la columna email
 */
 
 -- 
