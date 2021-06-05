@@ -38,7 +38,7 @@ public class TemporalWindow extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(209, 222, 232));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -56,6 +56,7 @@ public class TemporalWindow extends javax.swing.JFrame
         jTable1.setRowHeight(50);
         jScrollPane1.setViewportView(jTable1);
 
+        jTable2.setBackground(new java.awt.Color(0, 0, 0));
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -70,6 +71,7 @@ public class TemporalWindow extends javax.swing.JFrame
                 "Date", "Currency", "Price", "Amount"
             }
         ));
+        jTable2.setGridColor(new java.awt.Color(255, 255, 255));
         jScrollPane2.setViewportView(jTable2);
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
