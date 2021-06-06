@@ -1,6 +1,6 @@
 package cryptomanager;
 
-import gui.MainWindow;
+import gui.Login;
 
 /**
  *
@@ -15,7 +15,7 @@ public class CryptoManager
     public static void main(String[] args) 
     {
         
-        new MainWindow();
+        new Login();
 
     }
 }

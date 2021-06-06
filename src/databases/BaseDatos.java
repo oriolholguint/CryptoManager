@@ -1,6 +1,6 @@
-package basedatos;
+package databases;
 
-import clases.Usuario;
+import elements.Usuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

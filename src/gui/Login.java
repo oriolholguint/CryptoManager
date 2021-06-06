@@ -2,8 +2,8 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import basedatos.BaseDatos;
-import clases.Usuario;
+import databases.BaseDatos;
+import elements.Usuario;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,13 +14,13 @@ import utilities.WindowUtilities;
  *
  * @author Oriol Holguin <oriolholguint@gmail.com>
  */
-public class MainWindow extends javax.swing.JFrame implements ActionListener
+public class Login extends javax.swing.JFrame implements ActionListener
 {
     //Creacion de temporizador de ActionListener.
     final static int DELAY = 1000;
     Timer timer;
         
-    public MainWindow() 
+    public Login() 
     {
         initComponents();
         //initTimer();
@@ -83,6 +83,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         lblPassword.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblPassword.setText("Password");
 
+        txtCopyright.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtCopyright.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtCopyright.setText("Oriol Holguin - Alex Guirao - Francesc Bagué ©");
 
@@ -146,7 +147,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
                     .addComponent(btnRegister))
                 .addGap(65, 65, 65)
                 .addComponent(lblInfoLogin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                 .addComponent(txtCopyright)
                 .addContainerGap())
         );
@@ -198,7 +199,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         } 
         catch (SQLException ex) 
         {
-            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnEnterMouseClicked
 

@@ -100,7 +100,7 @@
                   </Group>
                   <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                   <Component id="lblInfoLogin" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="109" max="32767" attributes="0"/>
+                  <EmptySpace pref="114" max="32767" attributes="0"/>
                   <Component id="txtCopyright" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -148,6 +148,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="txtCopyright">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="12" style="0"/>
+            </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Oriol Holguin - Alex Guirao - Francesc Bagu&#xe9; &#xa9;"/>
           </Properties>
