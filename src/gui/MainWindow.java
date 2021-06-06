@@ -2,10 +2,10 @@ package gui;
 /**
  * @author Alex Guirao López <aguiraol2021@cepnet.net>
  */
-public class TemporalWindow extends javax.swing.JFrame 
+public class MainWindow extends javax.swing.JFrame 
 {
 
-    public TemporalWindow() 
+    public MainWindow() 
     {
         initComponents();
         
