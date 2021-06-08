@@ -1,7 +1,7 @@
 package gui;
 
 import databases.Database;
-import elements.Usuario;
+import elements.User;
 import java.sql.SQLException;
 import utilities.Checker;
 import utilities.WindowUtilities;
@@ -157,7 +157,7 @@ public class Register extends javax.swing.JDialog
         boolean usernameExists = false;
         boolean samePasswords;
         boolean correctEmail;
-        Usuario usuario;
+        User usuario;
         
         //Se comprueba que en la base de datos el username no exista.
         usernameExists = checkUsernameExists(txtUsername.getText());
@@ -172,7 +172,7 @@ public class Register extends javax.swing.JDialog
         
         if(!usernameExists && samePasswords && correctEmail)
         {
-            usuario = new Usuario(txtUsername.getText(), String.valueOf(password));
+            usuario = new User(txtUsername.getText(), String.valueOf(password));
             createUser(usuario);
             lblInfoRegister.setText("Usuario registrado correctamente");
             lblInfoRegister.setVisible(true);
@@ -242,7 +242,7 @@ public class Register extends javax.swing.JDialog
      * Crea un usuario en la base de datos.
      * @param usuario objeto de usuario con los atributos a registrar.
      */
-    private static void createUser(Usuario usuario)
+    private static void createUser(User usuario)
     {
         try
         {

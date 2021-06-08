@@ -4,12 +4,12 @@ package elements;
  *
  * @author Oriol Holguin <oriolholguint@gmail.com>
  */
-public class Usuario 
+public class User 
 {
     private String usuario;
     private String password;
       
-    public Usuario(String usuario, String password)
+    public User(String usuario, String password)
     {
         this.usuario = usuario;
         this.password = password;

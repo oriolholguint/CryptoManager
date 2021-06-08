@@ -1,6 +1,6 @@
 package databases;
 
-import elements.Usuario;
+import elements.User;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -36,7 +36,7 @@ public class Database
      * @return TRUE = si coincide el usuario con alguno de la base de datos.
      * @throws SQLException 
      */
-    public boolean checkLogin(Usuario usuario) throws SQLException
+    public boolean checkLogin(User usuario) throws SQLException
     {
         boolean loginCorrecto = false;
         String username;
@@ -96,7 +96,7 @@ public class Database
      * @param usuario objeto de usuario con los atributos del registro a añadir.
      * @throws SQLException 
      */
-    public void createUser(Usuario usuario) throws SQLException
+    public void createUser(User usuario) throws SQLException
     {
         String query = "INSERT INTO usuario VALUES(?, ?)";
         

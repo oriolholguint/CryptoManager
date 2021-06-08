@@ -2,14 +2,19 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group/>
-=======
         <group>
-            <file>file:/C:/Users/nexus/Documents/Estudios/DAM/MyProjects/CryptoManager/src/gui/MainWindow.java</file>
-            <file>file:/C:/Users/nexus/Documents/Estudios/DAM/MyProjects/CryptoManager/src/gui/TemporalWindow.java</file>
-            <file>file:/C:/Users/nexus/Documents/Estudios/DAM/MyProjects/CryptoManager/src/gui/Register.java</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/gui/MainWindow.java</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/elements/Crypto.java</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/gui/AddTransaction.java</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/elements/Transaction.java</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/gui/RowRenderer.java</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/icons/minus.png</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/icons/floppyPixel.png</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/localdata/LocalData.java</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/icons/cross.png</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/cryptomanager/CryptoManager.java</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/utilities/WindowUtilities.java</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/gui/Login.java</file>
         </group>
->>>>>>> 549290718a0e2f427ac09ded2a768124a7c83340
     </open-files>
 </project-private>

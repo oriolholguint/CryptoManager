@@ -3,7 +3,7 @@ package gui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import databases.Database;
-import elements.Usuario;
+import elements.User;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -172,7 +172,7 @@ public class Login extends javax.swing.JFrame implements ActionListener
      * @param evt 
      */
     private void btnEnterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnterMouseClicked
-        Usuario usuario = new Usuario("", "");
+        User usuario = new User("", "");
         usuario.setUsuario(txtUser.getText());
         usuario.setPassword(txtPassword.getText());
 
