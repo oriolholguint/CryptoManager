@@ -11,11 +11,11 @@ import java.sql.SQLException;
  *
  * @author Oriol Holguin <oriolholguint@gmail.com>
  */
-public class BaseDatos 
+public class Database 
 {
     private static Connection conn;
     
-    public BaseDatos() throws SQLException 
+    public Database() throws SQLException 
     {
         String url = "jdbc:mysql://localhost:3306/cryptomanager";
         String usuario = "root";
