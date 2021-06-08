@@ -1,6 +1,6 @@
 package gui;
 
-import databases.BaseDatos;
+import databases.Database;
 import elements.Usuario;
 import java.sql.SQLException;
 import utilities.Checker;
@@ -223,7 +223,7 @@ public class Register extends javax.swing.JDialog
         
         try
         {
-            BaseDatos bd = new BaseDatos();
+            Database bd = new Database();
             
             usernameExists = bd.checkUserRegister(username);
                         
@@ -246,7 +246,7 @@ public class Register extends javax.swing.JDialog
     {
         try
         {
-            BaseDatos bd = new BaseDatos();
+            Database bd = new Database();
             bd.createUser(usuario);
             bd.close();
         }

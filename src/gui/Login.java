@@ -2,7 +2,7 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import databases.BaseDatos;
+import databases.Database;
 import elements.Usuario;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -178,7 +178,7 @@ public class Login extends javax.swing.JFrame implements ActionListener
 
         try 
         {
-            BaseDatos bd = new BaseDatos();
+            Database bd = new Database();
 
             boolean loginCorrecto;
 

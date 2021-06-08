@@ -177,7 +177,7 @@ public class MainWindow extends javax.swing.JFrame
                     .addComponent(lblProfit)
                     .addComponent(lblTotalProfit)
                     .addComponent(lblTransactionAmount))
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
