@@ -54,7 +54,7 @@ public class MainWindow extends javax.swing.JFrame
         jLabel2 = new javax.swing.JLabel();
         jSpinner1 = new javax.swing.JSpinner();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu3 = new javax.swing.JMenu();
+        mnuAddTransaction = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
 
@@ -226,9 +226,14 @@ public class MainWindow extends javax.swing.JFrame
 
         jMenuBar1.setBackground(new java.awt.Color(209, 212, 229));
 
-        jMenu3.setBackground(new java.awt.Color(209, 212, 229));
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cross.png"))); // NOI18N
-        jMenuBar1.add(jMenu3);
+        mnuAddTransaction.setBackground(new java.awt.Color(209, 212, 229));
+        mnuAddTransaction.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cross.png"))); // NOI18N
+        mnuAddTransaction.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuAddTransactionMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(mnuAddTransaction);
 
         jMenu4.setBackground(new java.awt.Color(209, 212, 229));
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/minus.png"))); // NOI18N
@@ -254,6 +259,10 @@ public class MainWindow extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void mnuAddTransactionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuAddTransactionMouseClicked
+        new AddTransaction(this, true);
+    }//GEN-LAST:event_mnuAddTransactionMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
@@ -261,7 +270,6 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
@@ -273,6 +281,7 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JLabel lblProfit;
     private javax.swing.JLabel lblTotalProfit;
     private javax.swing.JLabel lblTransactionAmount;
+    private javax.swing.JMenu mnuAddTransaction;
     private javax.swing.JTable tblCrypto;
     private javax.swing.JTable tblTransactions;
     // End of variables declaration//GEN-END:variables

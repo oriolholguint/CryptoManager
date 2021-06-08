@@ -6,9 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 /**
- *
  * @author Oriol Holguin <oriolholguint@gmail.com>
  */
 public class Database 

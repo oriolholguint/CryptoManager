@@ -6,17 +6,19 @@ package elements;
  */
 public class User 
 {
-    private String usuario;
+    private String userName;
     private String password;
-      
-    public User(String usuario, String password)
+    private String email;
+    
+    public User(String usuario, String password, String email)
     {
-        this.usuario = usuario;
+        this.userName = usuario;
         this.password = password;
+        this.email = email;
     }
 
     public String getUsuario() {
-        return usuario;
+        return userName;
     }
 
     public String getPassword() {
@@ -24,11 +26,28 @@ public class User
     }
 
     public void setUsuario(String usuario) {
-        this.usuario = usuario;
+        this.userName = usuario;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
    
+    
 }
