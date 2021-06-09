@@ -6,12 +6,13 @@ public class Crypto
 {
     private String id;
     private String symbol;
-    private float currentPrice;
+    private String name;
 
-    public Crypto(String id, String symbol, float currentPrice) {
+    public Crypto(String id, String symbol, String name) 
+    {
         this.id = id;
         this.symbol = symbol;
-        this.currentPrice = currentPrice;
+        this.name = name;
     }
 
     public String getId() {
@@ -30,13 +31,11 @@ public class Crypto
         this.symbol = symbol;
     }
 
-    public float getCurrentPrice() {
-        return currentPrice;
+    public String getName() {
+        return name;
     }
 
-    public void setCurrentPrice(float currentPrice) {
-        this.currentPrice = currentPrice;
+    public void setName(String name) {
+        this.name = name;
     }
-    
-    
 }

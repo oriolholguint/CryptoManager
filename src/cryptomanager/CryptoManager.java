@@ -2,21 +2,23 @@ package cryptomanager;
 
 import gui.Login;
 import gui.MainWindow;
+import apicontrol.*;
 
 /**
  *
- * @author Oriol Holguin <oriolholguint@gmail.com>
+ * @author Oriol Holguin, Alex Guirao, Francesc Bagué
  */
 public class CryptoManager 
 {
-    
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) 
     {
-        new MainWindow();
+        /*Ejemplo para obtener el precio del bitcoin respecto al euro desde la API.
+        String bitcoinPrice=ApiControl.connectApi(ApiRequest.coinPrice("bitcoin", "eur"));
+        System.out.println(bitcoinPrice);
+        */
+        
         //new Login();
-
+        new MainWindow();
+        
     }
 }
