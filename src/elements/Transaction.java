@@ -8,14 +8,16 @@ public class Transaction
 {
     private int id;
     private Date transactionDate;
-    private Crypto currency;
+    private String currency;
     private float amount; 
+    private User user;
 
-    public Transaction(int id, Date transactionDate, Crypto currency, float amount) {
+    public Transaction(int id, Date transactionDate, String currency, float amount, User user) {
         this.id = id;
         this.transactionDate = transactionDate;
         this.currency = currency;
         this.amount = amount;
+        this.user = user;
     }
 
     public int getId() {
@@ -34,11 +36,11 @@ public class Transaction
         this.transactionDate = transactionDate;
     }
 
-    public Crypto getCurrency() {
+    public String getCurrency() {
         return currency;
     }
 
-    public void setCurrency(Crypto currency) {
+    public void setCurrency(String currency) {
         this.currency = currency;
     }
 
@@ -50,4 +52,13 @@ public class Transaction
         this.amount = amount;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    
 }
