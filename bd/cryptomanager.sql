@@ -45,7 +45,7 @@ CREATE TABLE wallet (
 -- 
 
 CREATE TABLE Transactions(
-id int,
+id int auto_increment,
 transactionDate Date,
 currency varchar(20),
 amount decimal(22,15),
