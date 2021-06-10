@@ -19,8 +19,8 @@ public class CryptoManager
         System.out.println(bitcoinPrice);
         */
         LocalData.user=new User("Alex","secret","Alex@ssds");
-        //new Login();
-        new MainWindow();
+        new Login();
+        //new MainWindow();
         
     }
 }
