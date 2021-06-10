@@ -1,7 +1,9 @@
 package gui;
 
 import databases.Database;
+import elements.Transaction;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -48,20 +50,24 @@ public class MainWindow extends javax.swing.JFrame
     {
         try {
             Database db = new Database();
+            ArrayList<Transaction> transactionList = db.getGlobalTransactionList();
             DefaultTableModel model = (DefaultTableModel)tblTransactions.getModel();
             Object rowData [] = new Object[4];
             
-            for (int i = 0; i<db.getTransactionList().length;i++)
+            for (int i = 0; i<transactionList.size();i++)
             {
-                rowData[0] = ;
-                rowData[1] = ;
-                rowData[2] = ;
-                rowData[3] = ;
+                rowData[0] = transactionList.get(i).getTransactionDate();
+                rowData[1] = transactionList.get(i).getCurrency();
+                rowData[2] = transactionList.get(i).getPrice();
+                rowData[3] = transactionList.get(i).getAmount();
                 model.addRow(rowData);
             }
-        
+            
         } catch (SQLException ex) {
             System.out.println("No se pudo acceder a la base de datos"+ex);
+            ex.printStackTrace();
+        } catch (NullPointerException ex){
+            System.out.println("No hay elementos en la base de datos"+ex);
             ex.printStackTrace();
         }
     }
@@ -73,15 +79,16 @@ public class MainWindow extends javax.swing.JFrame
     {
         try {
             Database db = new Database();
+            ArrayList<Transaction> transactionList = db.getSpecificTransactionList("bitcoin"); //Bitcoin para test
             DefaultTableModel model = (DefaultTableModel)tblTransactions.getModel();
             Object rowData [] = new Object[4];
             
-            for (int i = 0; i<db.getSpecificTransactionList().length;i++)
+            for (int i = 0; i<transactionList.size();i++)
             {
-                rowData[0] = ;
-                rowData[1] = ;
-                rowData[2] = ;
-                rowData[3] = ;
+                rowData[0] = transactionList.get(i).getTransactionDate();
+                rowData[1] = transactionList.get(i).getCurrency();
+                rowData[2] = transactionList.get(i).getPrice();
+                rowData[3] = transactionList.get(i).getAmount();
                 model.addRow(rowData);
             }
         
@@ -145,6 +152,11 @@ public class MainWindow extends javax.swing.JFrame
             }
         });
         tblCrypto.setRowHeight(50);
+        tblCrypto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCryptoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblCrypto);
         if (tblCrypto.getColumnModel().getColumnCount() > 0) {
             tblCrypto.getColumnModel().getColumn(0).setResizable(false);
@@ -317,6 +329,27 @@ public class MainWindow extends javax.swing.JFrame
     private void mnuAddTransactionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuAddTransactionMouseClicked
         new AddTransaction(this, true);
     }//GEN-LAST:event_mnuAddTransactionMouseClicked
+
+    private void tblCryptoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCryptoMouseClicked
+        /*Al clicar en la tabla quiero detectar el punto exacto donde se ha realizado el click.
+        Para eso voy a obtener 2 ejes*/
+        int column = tblCrypto.getColumnModel().getColumnIndexAtX(evt.getX()); //Obtén el índice de la columna donde el click
+        int row = evt.getY()/tblCrypto.getRowHeight(); //Obtén la fila donde el click
+        
+        //Comprueba límites de ltabla.
+        if (row < tblCrypto.getRowCount() && row >=0 && column < tblCrypto.getColumnCount() && column >= 0)
+        {
+            Object value = tblCrypto.getValueAt(row, column); //Obtén el objeto del click
+            if (value instanceof JButton)   //Si es un botón...
+            {
+                ((JButton)value).doClick(); //Haz un click "virtual" en el botón
+                JButton btn = (JButton) value;
+                
+                //Añadir aquí la función a realizar...
+                
+            }
+        }
+    }//GEN-LAST:event_tblCryptoMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jComboBox1;

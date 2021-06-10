@@ -132,7 +132,7 @@ public class Database
     {
         boolean correctInsert = false;
         
-        String query = "INSERT INTO transactions (transactionDate, currency, amount, price, userName) VALUES(?, ?, ?, ?, ?)";
+        String query = "INSERT INTO transactions (transactionDate, currency, amount, price, userName) VALUES (?, ?, ?, ?, ?)";
         
         PreparedStatement st = conn.prepareStatement(query);
         st.setDate(1, transaction.getTransactionDate());

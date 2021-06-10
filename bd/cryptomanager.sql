@@ -16,6 +16,7 @@ CREATE TABLE crypto(
   currentPrice decimal(22,15),
   PRIMARY KEY (id)); 
 
+insert into crypto values ("bitcoin","btc",0.44);
 --
 -- Estructura de tabla para la tabla `usuario`
 --
@@ -26,6 +27,7 @@ CREATE TABLE users (
   email varchar(255) not null,
   PRIMARY KEY (username)); 
 
+insert into users values ("Alex","secret","alex@mail.com");
 -- 
 -- Estructura de tabl para la tabla `monedero`
 -- 
@@ -54,3 +56,4 @@ PRIMARY KEY (id),
 FOREIGN KEY (currency) REFERENCES crypto (id),
 FOREIGN KEY (userName) REFERENCES users(userName));
 
+select * from transactions;

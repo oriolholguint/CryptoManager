@@ -3,6 +3,8 @@ package cryptomanager;
 import gui.Login;
 import gui.MainWindow;
 import apicontrol.*;
+import elements.User;
+import localdata.LocalData;
 
 /**
  *
@@ -16,7 +18,7 @@ public class CryptoManager
         String bitcoinPrice=ApiControl.connectApi(ApiRequest.coinPrice("bitcoin", "eur"));
         System.out.println(bitcoinPrice);
         */
-        
+        LocalData.user=new User("Alex","secret","Alex@ssds");
         //new Login();
         new MainWindow();
         

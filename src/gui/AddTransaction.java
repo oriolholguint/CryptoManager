@@ -1,8 +1,10 @@
 package gui;
 
 import databases.Database;
+import elements.Transaction;
 import java.sql.Date;
 import java.sql.SQLException;
+import localdata.LocalData;
 import utilities.WindowUtilities;
 /**
  * @author Alex Guirao Lopez <aguiraol2021@cepnet.net>
@@ -14,6 +16,7 @@ public class AddTransaction extends javax.swing.JDialog
     {
         super(parent, modal);
         initComponents();
+        cbCryptos.addItem("Bitcoin");
         WindowUtilities.initSimpleWindow(this, "Add transaction");
     }
 
@@ -122,12 +125,13 @@ public class AddTransaction extends javax.swing.JDialog
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         try {
             Database db = new Database();
+            
             Date date = Date.valueOf(txtDate.getText());
             String crypto = cbCryptos.getSelectedItem().toString();
             float amount = Float.parseFloat(txtAmount.getText());
-            float price = Float.parseFloat(txtAmount.getText());
+            float price = Float.parseFloat(txtPrice.getText());
             
-            db.insertTransaction(date,crypto,amount,price);
+            db.insertTransaction(new Transaction(date,crypto,amount,price,LocalData.user));
             
             db.close();
             setVisible(false);
