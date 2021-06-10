@@ -8,8 +8,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JTable;
 import localdata.LocalData;
 import javax.swing.table.DefaultTableModel;
+import utilities.ConsoleColors;
 import utilities.WindowUtilities;
 
 /**
@@ -60,6 +62,7 @@ public class MainWindow extends javax.swing.JFrame
                 rowData[1] = transactionList.get(i).getCurrency();
                 rowData[2] = transactionList.get(i).getPrice();
                 rowData[3] = transactionList.get(i).getAmount();
+                
                 model.addRow(rowData);
             }
             
@@ -98,7 +101,6 @@ public class MainWindow extends javax.swing.JFrame
             ex.printStackTrace();
         }
     }
-    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -163,23 +165,31 @@ public class MainWindow extends javax.swing.JFrame
             tblCrypto.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        tblTransactions.setBackground(new java.awt.Color(0, 0, 0));
+        tblTransactions.setBackground(new java.awt.Color(255, 255, 255));
         tblTransactions.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Date", "Currency", "Price", "Amount"
             }
-        ));
-        tblTransactions.setGridColor(new java.awt.Color(255, 255, 255));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblTransactions.setGridColor(new java.awt.Color(0, 0, 0));
         jScrollPane2.setViewportView(tblTransactions);
+        if (tblTransactions.getColumnModel().getColumnCount() > 0) {
+            tblTransactions.getColumnModel().getColumn(0).setResizable(false);
+            tblTransactions.getColumnModel().getColumn(1).setResizable(false);
+            tblTransactions.getColumnModel().getColumn(2).setResizable(false);
+            tblTransactions.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -327,7 +337,7 @@ public class MainWindow extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnuAddTransactionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuAddTransactionMouseClicked
-        new AddTransaction(this, true);
+        new AddTransactionWindow(this, true,this);
     }//GEN-LAST:event_mnuAddTransactionMouseClicked
 
     private void tblCryptoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCryptoMouseClicked
@@ -372,4 +382,10 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JTable tblCrypto;
     private javax.swing.JTable tblTransactions;
     // End of variables declaration//GEN-END:variables
+
+
+    //=========GET & SET===========
+    public JTable getTblTransactions() {
+        return tblTransactions;
+    }
 }
