@@ -1,5 +1,6 @@
 package localdata;
 
+import elements.User;
 import java.util.ArrayList;
 
 /** 
@@ -10,5 +11,5 @@ public class LocalData
     public static final String [] cryptoLogoPath = {"assets/images/btcLogo.png",
                                                                                     "assets/images/linkLogo.png",
                                                                                         "assets/images/etherumLogo.png"};
-    
+    public static User user;
 }
