@@ -3,6 +3,7 @@ package gui;
 import databases.Database;
 import elements.User;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import utilities.WindowUtilities;
 
 /**
@@ -136,11 +137,12 @@ public class ForgotPassword extends javax.swing.JDialog {
             
             if(user != null)
             {
-                
+                lblPassword.setText(user.getPassword());
+                lblPassword.setVisible(true);
             }
             else
             {
-                
+                JOptionPane.showMessageDialog(null, "El email no ha sido encontrado.", "Email Not Found", JOptionPane.OK_CANCEL_OPTION, null);
             }
             
             bd.close();
