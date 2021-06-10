@@ -22,7 +22,7 @@ CREATE TABLE crypto(
 --
 
 CREATE TABLE users (
-  userName varchar(15) NOT NULL,
+  userName varchar(15),
   userPassword varchar(20) DEFAULT NULL,
   email varchar(255) not null,
   PRIMARY KEY (username)); 
@@ -49,6 +49,8 @@ id int,
 transactionDate Date,
 currency varchar(20),
 amount decimal(22,15),
+userName varchar(15),
 PRIMARY KEY (id),
-FOREIGN KEY (currency) REFERENCES crypto (id));
+FOREIGN KEY (currency) REFERENCES crypto (id),
+FOREIGN KEY (userName) REFERENCES users(userName));
 
