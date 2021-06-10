@@ -120,6 +120,40 @@ public class Database
         }
     }
     
+    //==============================RECOVER PASSWORD==============================
+    
+    /**
+     * Se busca en la base de datos un usuario dado un email, en el caso que lo
+     * encuentre devuelve un objeto de User sino el objeto sera null.
+     * @param email a buscar en la base de datos.
+     * @return objeto de User con los datos del usuario.
+     * @throws SQLException 
+     */
+    public User checkUserExists(String email) throws SQLException
+    {
+        User user = null;
+        String userName;
+        String userPassword;
+        String emailAux;
+        
+        String query = "SELECT * FROM users WHERE email = ?";
+        
+        PreparedStatement st = conn.prepareStatement(query);
+        st.setString(1, email);
+        
+        ResultSet rs = st.executeQuery();
+        while(rs.next())
+        {
+            userName = rs.getString("userName");
+            userPassword = rs.getString("userPassword");
+            emailAux = rs.getString("email");
+            
+            user = new User(userName, userPassword, emailAux);
+        }
+        
+        return user;
+    }
+    
     //================================MAIN WINDOW================================
     
     /**
