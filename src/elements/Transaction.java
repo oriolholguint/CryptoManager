@@ -10,15 +10,27 @@ public class Transaction
     private Date transactionDate;
     private String currency;
     private float amount; 
+    private float price;
     private User user;
 
-    public Transaction(int id, Date transactionDate, String currency, float amount, User user) {
+    public Transaction(int id, Date transactionDate, String currency, float price, float amount, User user) {
         this.id = id;
         this.transactionDate = transactionDate;
         this.currency = currency;
         this.amount = amount;
+        this.price = price;
         this.user = user;
     }
+
+    public Transaction(Date transactionDate, String currency, float price, float amount, User user) {
+        this.transactionDate = transactionDate;
+        this.currency = currency;
+        this.amount = amount;
+        this.price = price;
+        this.user = user;
+    }
+    
+    
 
     public int getId() {
         return id;
