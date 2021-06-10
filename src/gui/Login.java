@@ -172,7 +172,7 @@ public class Login extends javax.swing.JFrame implements ActionListener
      * @param evt 
      */
     private void btnEnterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnterMouseClicked
-        User usuario = new User("", "");
+        User usuario = new User("", "", "");
         usuario.setUsuario(txtUser.getText());
         usuario.setPassword(txtPassword.getText());
 
