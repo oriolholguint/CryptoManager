@@ -47,7 +47,7 @@ public class Database
         String username;
         String password;
         
-        String query = "SELECT * FROM usuario WHERE usuario = ?";
+        String query = "SELECT * FROM users WHERE userName = ?";
         PreparedStatement st = conn.prepareStatement(query);
         
         st.setString(1, usuario.getUsuario());
@@ -55,8 +55,8 @@ public class Database
         ResultSet rs = st.executeQuery();
         while(rs.next())
         {
-            username = rs.getString("usuario");
-            password = rs.getString("password");
+            username = rs.getString("userName");
+            password = rs.getString("userPassword");
             if(password.equals(usuario.getPassword()))
             {
                 loginCorrecto = true;
@@ -78,7 +78,7 @@ public class Database
         boolean exists = false;
         String usernameAux;
         
-        String query = "SELECT * FROM usuario WHERE usuario = ?";
+        String query = "SELECT * FROM users WHERE userName = ?";
         PreparedStatement st = conn.prepareStatement(query);
         
         st.setString(1, username);
@@ -86,7 +86,7 @@ public class Database
         ResultSet rs = st.executeQuery();
         while(rs.next())
         {
-            usernameAux = rs.getString("usuario");
+            usernameAux = rs.getString("userName");
             if(usernameAux.equals(username))
             {
                 exists = true;
@@ -103,12 +103,13 @@ public class Database
      */
     public void createUser(User usuario) throws SQLException
     {
-        String query = "INSERT INTO usuario VALUES(?, ?)";
+        String query = "INSERT INTO users VALUES(?, ?, ?)";
         
         PreparedStatement st = conn.prepareStatement(query);
         
         st.setString(1, usuario.getUsuario());
         st.setString(2, usuario.getPassword());
+        st.setString(3, usuario.getEmail());
         
         if(st.executeUpdate() != 0)
         {

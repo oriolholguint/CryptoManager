@@ -229,7 +229,8 @@ public class Register extends javax.swing.JDialog
         }
         catch(SQLException ex)
         {
-            System.out.println("No se ha podido acceder a la base de datos.");
+            System.out.println("No se ha podido acceder a la base de datos." + ex.toString());
+            ex.printStackTrace();
         } 
         
         return usernameExists;
@@ -250,6 +251,7 @@ public class Register extends javax.swing.JDialog
         catch(SQLException ex)
         {
             System.out.println("No se ha podido acceder a la base de datos.");
+            ex.printStackTrace();
         }
     }
     
