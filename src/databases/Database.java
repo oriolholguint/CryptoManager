@@ -132,13 +132,14 @@ public class Database
     {
         boolean correctInsert = false;
         
-        String query = "INSERT INTO transactions (transactionDate, currency, amount, userName) VALUES(?, ?, ?, ?)";
+        String query = "INSERT INTO transactions (transactionDate, currency, amount, price, userName) VALUES(?, ?, ?, ?, ?)";
         
         PreparedStatement st = conn.prepareStatement(query);
         st.setDate(1, transaction.getTransactionDate());
         st.setString(2, transaction.getCurrency());
         st.setFloat(3, transaction.getAmount());
-        st.setString(4, transaction.getUser().getUsuario());
+        st.setFloat(4, transaction.getPrice());
+        st.setString(5, transaction.getUser().getUsuario());
         
         if(st.executeUpdate() != 0)
         {
@@ -155,16 +156,17 @@ public class Database
      * informacion.
      * @throws SQLException 
      */
-    public ArrayList<Transaction> getTransactionsList() throws SQLException
+    public ArrayList<Transaction> getGlobalTransactionList() throws SQLException
     {
         ArrayList<Transaction> transactions = new ArrayList<>();
         Transaction transaction;
         int id;
         Date transactionDate;
         String currency;
-        float amount; 
+        float amount;
+        float price;
         
-        String query = "SELECT * FROM transactions WHERE username = ?";
+        String query = "SELECT * FROM transactions WHERE userName = ?";
         
         PreparedStatement st = conn.prepareStatement(query);
         
@@ -178,8 +180,50 @@ public class Database
             transactionDate = rs.getDate("transactionDate");
             currency = rs.getString("currency");
             amount = rs.getFloat("amount");
+            price = rs.getFloat("price");
             
-            transaction = new Transaction(id, transactionDate, currency, amount, LocalData.user);
+            transaction = new Transaction(id, transactionDate, currency, price, amount, LocalData.user);
+            
+            transactions.add(transaction);
+        }
+        
+        return transactions;
+    }
+    
+    /**
+     * Se obtiene la lista transacciones de la base de datos segun la moneda que
+     * se envie por parametros y el usuario que este logueado en ese momento.
+     * @param currency moneda de la cual se seleccionan las transacciones.
+     * @return ArrayList con las transacciones y sus respectivos datos.
+     * @throws SQLException 
+     */
+    public ArrayList<Transaction> getSpecificTransactionList(String currency) throws SQLException
+    {
+        ArrayList<Transaction> transactions = new ArrayList<>();
+        Transaction transaction;
+        int id;
+        Date transactionDate;
+        String currencyAux;
+        float amount;
+        float price;
+        
+        String query = "SELECT * FROM transactions WHERE currency = ? AND userName = ?";
+        
+        PreparedStatement st = conn.prepareStatement(query);
+        st.setString(1, currency);
+        st.setString(2, LocalData.user.getUserName());
+        
+        ResultSet rs = st.executeQuery();
+        
+        while(rs.next())
+        {
+            id = rs.getInt("id");
+            transactionDate = rs.getDate("transactionDate");
+            currencyAux = rs.getString("currency");
+            amount = rs.getFloat("amount");
+            price = rs.getFloat("price");
+            
+            transaction = new Transaction(id, transactionDate, currencyAux, price, amount, LocalData.user);
             
             transactions.add(transaction);
         }

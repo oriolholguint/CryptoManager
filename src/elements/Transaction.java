@@ -56,6 +56,14 @@ public class Transaction
         this.currency = currency;
     }
 
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+    
     public float getAmount() {
         return amount;
     }
