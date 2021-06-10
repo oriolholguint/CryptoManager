@@ -1,5 +1,9 @@
 package gui;
 
+import databases.Database;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import localdata.LocalData;
@@ -18,9 +22,13 @@ public class MainWindow extends javax.swing.JFrame
         initComponents();
         tblCrypto.setDefaultRenderer(tblCrypto.getColumnClass(0), rr); 
         fillCryptoIconTable();
+        fillGlobalTransactionTable();
         WindowUtilities.initSimpleWindow(this, "Crypto Manager");
     }
     
+    /**
+     * Rellena la tabla de criptomonedas con las imágenes correspondientes.
+     */
     public void fillCryptoIconTable()
     {
         DefaultTableModel model = (DefaultTableModel)tblCrypto.getModel();
@@ -32,6 +40,58 @@ public class MainWindow extends javax.swing.JFrame
             model.addRow(rowData);
         }
     }
+    
+    /**
+     * Rellena la tabla con todas las transacciones.
+     */
+    public void fillGlobalTransactionTable()
+    {
+        try {
+            Database db = new Database();
+            DefaultTableModel model = (DefaultTableModel)tblTransactions.getModel();
+            Object rowData [] = new Object[4];
+            
+            for (int i = 0; i<db.getTransactionList().length;i++)
+            {
+                rowData[0] = ;
+                rowData[1] = ;
+                rowData[2] = ;
+                rowData[3] = ;
+                model.addRow(rowData);
+            }
+        
+        } catch (SQLException ex) {
+            System.out.println("No se pudo acceder a la base de datos"+ex);
+            ex.printStackTrace();
+        }
+    }
+    
+      /**
+     * Rellena la tabla con las transacciones respectivas a una moneda en concreto.
+     */
+    public void fillSpecificTransactionTable()
+    {
+        try {
+            Database db = new Database();
+            DefaultTableModel model = (DefaultTableModel)tblTransactions.getModel();
+            Object rowData [] = new Object[4];
+            
+            for (int i = 0; i<db.getSpecificTransactionList().length;i++)
+            {
+                rowData[0] = ;
+                rowData[1] = ;
+                rowData[2] = ;
+                rowData[3] = ;
+                model.addRow(rowData);
+            }
+        
+            db.close();
+        } catch (SQLException ex) {
+            System.out.println("No se pudo acceder a la base de datos"+ex);
+            ex.printStackTrace();
+        }
+    }
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -56,7 +116,6 @@ public class MainWindow extends javax.swing.JFrame
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuAddTransaction = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -239,10 +298,6 @@ public class MainWindow extends javax.swing.JFrame
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/minus.png"))); // NOI18N
         jMenuBar1.add(jMenu4);
 
-        jMenu1.setBackground(new java.awt.Color(209, 212, 229));
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/floppyPixel.png"))); // NOI18N
-        jMenuBar1.add(jMenu1);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -269,7 +324,6 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
