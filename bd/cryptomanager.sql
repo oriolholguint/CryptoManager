@@ -1,7 +1,6 @@
 --
 -- Base de datos: `cryptomanager`
 --
-
 drop database if exists cryptomanager;
 create database cryptomanager;
 use cryptomanager;
@@ -49,6 +48,7 @@ id int auto_increment,
 transactionDate Date,
 currency varchar(20),
 amount decimal(22,15),
+price decimal (22,15),
 userName varchar(15),
 PRIMARY KEY (id),
 FOREIGN KEY (currency) REFERENCES crypto (id),
