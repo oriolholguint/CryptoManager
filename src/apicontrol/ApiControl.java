@@ -37,8 +37,9 @@ public class ApiControl
             connection.setConnectTimeout(5000);
             connection.setReadTimeout(5000);
             
+            /* PARA POSIBLE CONTRASEÑA DE LA API
             connection.addRequestProperty("X-CMC_PRO_API_KEY", "3cd31617-6549-4955-8fc9-1e8c454f6a54");
-            
+            */
             int status = connection.getResponseCode();
             
             //System.out.println(status); //DEBUG del estado para la conexión
