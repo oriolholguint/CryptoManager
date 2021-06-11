@@ -1,5 +1,7 @@
 package gui;
 
+import apicontrol.ApiControl;
+import apicontrol.ApiRequest;
 import databases.Database;
 import elements.Transaction;
 import java.sql.Date;
@@ -22,8 +24,22 @@ public class AddTransactionWindow extends javax.swing.JDialog
         super(parent, modal);
         initComponents();
         this.mw=mw;
-        cbCryptos.addItem("Bitcoin"); //TEST
+        initComboBox();
         WindowUtilities.initSimpleWindow(this, "Add transaction");
+    }
+    
+    /**
+     * Inicia el desplegable de las criptomonedas a elegir con la lista de los nombres de todas ellas.
+     */
+    public void initComboBox()
+    {
+           String bitcoinPrice=ApiControl.connectApi(ApiRequest.coinListURL);
+        ArrayList<String> coinList=ApiControl.parseCryptoList(bitcoinPrice);
+        
+        for (String s:coinList)
+        {
+            cbCryptos.addItem(s);
+        }
     }
     
      /**

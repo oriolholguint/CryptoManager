@@ -101,6 +101,32 @@ public class ApiControl
             
             return cryptoList;
     }
+    
+    /**
+     * Obten un array de la lista de criptomonedas de la API.
+     * @param responseBody consulta de la API en formato JSON.
+     * @return Lista con los nombres de todas las criptomonedas.
+     */
+    public static ArrayList<String> parseCryptoList (String responseBody) 
+    {
+        ArrayList<String> cryptoList=new ArrayList();
+        
+        try{
+            JSONArray cryptos = new JSONArray(responseBody);
+
+            for (int i = 0; i<cryptos.length();i++)
+            {
+                JSONObject crypto = cryptos.getJSONObject(i);
+                String id = crypto.getString("id");
+                cryptoList.add(id);
+            }
+        } catch (JSONException ex) {
+                System.out.println("No se pudo parsear el JSON" + ex);
+                ex.printStackTrace();
+        }
+            
+            return cryptoList;
+    }
         
      //Parse JSON file to an object
     public static Crypto parseToObject (String responseBody)
