@@ -18,4 +18,9 @@ public class ApiRequest
         return "https://api.coingecko.com/api/v3/simple/price?ids="+coinName+"&vs_currencies="+vsCurrency+
                 "&include_market_cap=false&include_24hr_vol=false&include_24hr_change=false&include_last_updated_at=false";
     }
+    
+    public static String cryptoInfo(String coinName)
+    {
+        return "https://api.coingecko.com/api/v3/coins/"+coinName+"?tickers=false&market_data=false&community_data=false&developer_data=false&sparkline=false";
+    }
 }

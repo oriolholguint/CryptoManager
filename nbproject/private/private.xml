@@ -3,10 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/nexus/Documents/Estudios/DAM/MyProjects/CryptoManager/src/gui/MainWindow.java</file>
-            <file>file:/C:/Users/nexus/Documents/Estudios/DAM/MyProjects/CryptoManager/src/gui/Register.java</file>
-            <file>file:/C:/Users/nexus/Documents/Estudios/DAM/MyProjects/CryptoManager/src/gui/AddTransactionWindow.java</file>
-            <file>file:/C:/Users/nexus/Documents/Estudios/DAM/MyProjects/CryptoManager/src/utilities/ConsoleColors.java</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/elements/Crypto.java</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/gui/Register.java</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/elements/Wallet.java</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/elements/Transaction.java</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/gui/RowRenderer.java</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/icons/minus.png</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/gui/AddTransactionWindow.java</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/elements/User.java</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/icons/floppyPixel.png</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/localdata/LocalData.java</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/icons/cross.png</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/utilities/WindowUtilities.java</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/gui/Login.java</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/gui/MainWindow.java</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/databases/Database.java</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/gui/ForgotPassword.java</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/apicontrol/ApiRequest.java</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/apicontrol/ApiControl.java</file>
+            <file>file:/C:/Users/Aresu/Desktop/Aresu/DAM/MyProjects/CryptoManager/src/cryptomanager/CryptoManager.java</file>
         </group>
     </open-files>
 </project-private>

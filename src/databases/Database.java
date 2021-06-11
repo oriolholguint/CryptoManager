@@ -10,7 +10,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import localdata.LocalData;
+import apicontrol.ApiControl;
+import apicontrol.ApiRequest;
+
 /**
  * @author Oriol Holguin <oriolholguint@gmail.com>
  */
@@ -156,7 +161,6 @@ public class Database
     }
     
     //================================MAIN WINDOW================================
-    
     /**
      * Se inserta una transaccion en la base de datos enviado un objeto de Transaction.
      * @param transaction objeto de Transaccion con la informacion a insertar.
@@ -264,5 +268,33 @@ public class Database
         }
         
         return transactions;
+    }
+    
+    //===================Crypto==================
+    /**
+     * Inserta una criptomoneda a la base de datos en la que aparecen las criptomonedas
+     * que el usuario tiene en su posesión. Es decir, de las que ha realizado transacciones.
+     * @param coinName Nombre de la moneda.
+     * @return TRUE si se ha insertado con éxito.
+     * @throws SQLException 
+     */
+    public boolean insertCrypto(String coinName) throws SQLException
+    {
+        boolean done=false;
+        String query = "Insert into crypto VALUES (?, ?, ?)";
+        
+        PreparedStatement ps = conn.prepareStatement(query);
+        Crypto crypto = ApiControl.parseToObject(ApiRequest.cryptoInfo(coinName));
+        ps.setString(1, crypto.getId());
+        ps.setString(2, crypto.getSymbol());
+        ps.setString(3, crypto.getName());
+        int rowsChanged = ps.executeUpdate();
+        
+        if(rowsChanged!=0)
+        {
+            done=true;
+        }
+        
+        return done;
     }
 }
