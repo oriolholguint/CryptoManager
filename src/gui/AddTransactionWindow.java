@@ -3,10 +3,14 @@ package gui;
 import apicontrol.ApiControl;
 import apicontrol.ApiRequest;
 import databases.Database;
+import elements.Crypto;
 import elements.Transaction;
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import localdata.LocalData;
@@ -33,12 +37,18 @@ public class AddTransactionWindow extends javax.swing.JDialog
      */
     public void initComboBox()
     {
-           String bitcoinPrice=ApiControl.connectApi(ApiRequest.coinListURL);
-        ArrayList<String> coinList=ApiControl.parseCryptoList(bitcoinPrice);
-        
-        for (String s:coinList)
-        {
+           String bitcoinPrice;
+        try {
+            bitcoinPrice = ApiControl.connectApi(ApiRequest.coinListURL);
+            ArrayList<String> coinList=ApiControl.parseCryptoList(bitcoinPrice);
+            
+            for (String s:coinList)
+            {
             cbCryptos.addItem(s);
+            }
+        } catch (IOException ex) {
+            System.out.println(ConsoleColors.RED+"No se ha podido acceder a la API");
+            ex.printStackTrace();
         }
     }
     
@@ -202,12 +212,22 @@ public class AddTransactionWindow extends javax.swing.JDialog
             Database db = new Database();
             
             Date date = Date.valueOf(txtDate.getText());
-            String crypto = cbCryptos.getSelectedItem().toString();
+            String cryptoName = cbCryptos.getSelectedItem().toString();
             float amount = Float.parseFloat(txtPrice.getText());
             float price = Float.parseFloat(txtAmount.getText());
             
-            //db.insertCrypto(cbCryptos.getSelectedItem().toString()); //ERROR (Línea en desarrollo)
-            db.insertTransaction(new Transaction(date,crypto,amount,price,LocalData.user));
+            Crypto crypto;
+            try {
+                String request = ApiRequest.cryptoInfo(cryptoName);
+                String jsonText= ApiControl.connectApi(request);
+                crypto = ApiControl.parseToObject(jsonText);
+                db.insertCrypto(crypto);
+                
+            } catch (IOException ex) {
+                System.out.println(ConsoleColors.RED+"No se pudo obtener la info de la API");
+            }
+            
+            db.insertTransaction(new Transaction(date,cryptoName,amount,price,LocalData.user));
             
             db.close();
             addRow(mw.getTblTransactions());

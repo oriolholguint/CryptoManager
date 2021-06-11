@@ -278,16 +278,14 @@ public class Database
      * @return TRUE si se ha insertado con éxito.
      * @throws SQLException 
      */
-    public boolean insertCrypto(String coinName) throws SQLException
+    public boolean insertCrypto(Crypto crypto) throws SQLException
     {
         boolean done=false;
-        String query = "Insert into crypto VALUES (?, ?, ?)";
+        String query = "Insert into crypto VALUES (?, ?)";
         
         PreparedStatement ps = conn.prepareStatement(query);
-        Crypto crypto = ApiControl.parseToObject(ApiRequest.cryptoInfo(coinName));
         ps.setString(1, crypto.getId());
         ps.setString(2, crypto.getSymbol());
-        ps.setString(3, crypto.getName());
         int rowsChanged = ps.executeUpdate();
         
         if(rowsChanged!=0)

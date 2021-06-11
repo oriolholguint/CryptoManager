@@ -2,6 +2,9 @@ package apicontrol;
 
 import elements.Crypto;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -17,15 +20,18 @@ public class ApiControl
     private static HttpURLConnection connection;
     
     /**
-     * Lanza una petición de tipo GET a la API y devuelve la respuesta en JSON
+     * Lanza una petición de tipo GET a la API y devuelve la respuesta en JSON.
+     * Guarda la respuesta del JSON en un fichero de texto para comprobarla más cómodamente.
      * @param urlText enlace de la petición.
      * @return resultado de la petición en formato JSON.
+     * @throws java.io.IOException
      */
-    public static String connectApi(String urlText)
+    public static String connectApi(String urlText) throws IOException
     {
         BufferedReader reader;
         String line;
         StringBuffer responseContent = new StringBuffer();
+        BufferedWriter bw = new BufferedWriter(new FileWriter(new File("apiData.json")));
         
         try
         {
@@ -42,7 +48,7 @@ public class ApiControl
             */
             int status = connection.getResponseCode();
             
-            //System.out.println(status); //DEBUG del estado para la conexión
+            System.out.println(status); //DEBUG del estado para la conexión
                         
             if(status > 299)
             {
@@ -59,6 +65,8 @@ public class ApiControl
                 while((line = reader.readLine()) != null)
                 {
                     responseContent.append(line);
+                    bw.write(responseContent.toString());
+                            
                 }
                 reader.close();
             }
@@ -91,8 +99,7 @@ public class ApiControl
                 JSONObject crypto = cryptos.getJSONObject(i);
                 String id = crypto.getString("id");
                 String symbol = crypto.getString("symbol");
-                String name = crypto.getString("name");
-                cryptoList.add(new Crypto(id, symbol, name)); //Añade la lista de albumes desde el archivo JSON.
+                cryptoList.add(new Crypto(id, symbol)); //Añade la lista de albumes desde el archivo JSON.
             }
         } catch (JSONException ex) {
                 System.out.println("No se pudo parsear el JSON" + ex);
@@ -133,13 +140,12 @@ public class ApiControl
     {
         Crypto crypto=null;
         try{
-            JSONObject album = new JSONObject(responseBody);
+            JSONObject cryptoApi = new JSONObject(responseBody);
 
-            String id = album.getString("id");
-            String symbol = album.getString("symbol");
-            String name = album.getString("name");
+            String id = cryptoApi.getString("id");
+            String symbol = cryptoApi.getString("symbol");
 
-            crypto=new Crypto(id, symbol,name); //Añade la lista de albumes desde el archivo JSON.
+            crypto=new Crypto(id, symbol); //Añade la lista de albumes desde el archivo JSON.
         
         } catch (JSONException ex) {
                 System.out.println("No se pudo parsear el JSON" + ex);
