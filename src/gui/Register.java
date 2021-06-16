@@ -12,7 +12,11 @@ import utilities.WindowUtilities;
  */
 public class Register extends javax.swing.JDialog 
 {
-
+    //
+    final static int MAX_USER_CHARACTERS  = 15;
+    final static int MAX_PASSWORD_CHARACTERS  = 20;
+    final static int BAR_SPACE = 32;
+    
     /**
      * Creates new form Register
      */
@@ -73,7 +77,7 @@ public class Register extends javax.swing.JDialog
 
         lblInfoRegister.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblInfoRegister.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblInfoRegister.setText("jLabel1");
+        lblInfoRegister.setText("Register Information");
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
@@ -87,11 +91,8 @@ public class Register extends javax.swing.JDialog
                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(panelLayout.createSequentialGroup()
-                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblEmail)
-                                    .addComponent(lblConfirmPassword))
-                                .addGap(0, 2, Short.MAX_VALUE)))
+                            .addComponent(lblConfirmPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(26, 26, 26)
                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -104,7 +105,7 @@ public class Register extends javax.swing.JDialog
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsername)
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -112,22 +113,19 @@ public class Register extends javax.swing.JDialog
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelLayout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(lblConfirmPassword))
-                    .addGroup(panelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtConfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblConfirmPassword)
+                    .addComponent(txtConfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblEmail)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtEmail))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRegister)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(lblInfoRegister)
-                .addGap(34, 34, 34))
+                .addGap(45, 45, 45))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -151,35 +149,65 @@ public class Register extends javax.swing.JDialog
      */
     private void btnRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegisterMouseClicked
         
-        boolean usernameExists = false;
+        boolean usernameExists;
         boolean samePasswords;
         boolean correctEmail;
+        boolean incorrectLenghtPassword;
+        boolean incorrectPasswordFormat;
         User usuario;
+        
+        char password [] = txtPassword.getPassword();
+        char confirmPassword [] = txtConfirmPassword.getPassword();
         
         //Se comprueba que en la base de datos el username no exista.
         usernameExists = checkUsernameExists(txtUsername.getText());
         
+        //Se comprueba que la longitud de caracteres del password no sea mayor al permitido.
+        incorrectLenghtPassword = password.length > MAX_PASSWORD_CHARACTERS;
+        
         //Se comprueba que las dos contraseñas sean iguales
-        char password [] = txtPassword.getPassword();
-        char confirmPassword [] = txtConfirmPassword.getPassword();
         samePasswords = checkSamePasswords(password, confirmPassword);
+        
+        //Se comprueba que la contraseña no contenga ningun espacio
+        incorrectPasswordFormat = checkFormatPassword(new String(password));
         
         //Se comprueba que el email introducido sea correcto     
         correctEmail = Checker.checkEmail(txtEmail.getText());
         
-        if(!usernameExists && samePasswords && correctEmail)
+        //Se comprueba que la longitud de caracteres del username no sea mayor al permitido.
+        if(txtUsername.getText().length() > MAX_USER_CHARACTERS)
+        {
+            lblInfoRegister.setText("El usuario ha superado el max caracteres (" + MAX_USER_CHARACTERS + ").");
+        }
+        else if(usernameExists)
+        {
+            lblInfoRegister.setText("El usuario ya existe.");
+        }
+        else if(incorrectLenghtPassword)
+        {
+            lblInfoRegister.setText("El password ha superado el max caracteres (" + MAX_PASSWORD_CHARACTERS + ").");
+        }
+        else if(!samePasswords)
+        {
+            lblInfoRegister.setText("Las contraseñas no coinciden.");
+        }
+        else if(incorrectPasswordFormat)
+        {
+            lblInfoRegister.setText("La contraseña no puede contener espacios.");
+        }
+        else if(!correctEmail)
+        {
+            lblInfoRegister.setText("El email no es correcto.");
+        }
+        else
         {
             usuario = new User(txtUsername.getText(), String.valueOf(password), txtEmail.getText());
             createUser(usuario);
             lblInfoRegister.setText("Usuario registrado correctamente");
-            lblInfoRegister.setVisible(true);
             this.dispose();
         }
-        else
-        {
-            lblInfoRegister.setText("Error al registrar usuario");
-            lblInfoRegister.setVisible(true);   
-        }
+        
+        lblInfoRegister.setVisible(true);
     }//GEN-LAST:event_btnRegisterMouseClicked
 
     /**
@@ -255,6 +283,29 @@ public class Register extends javax.swing.JDialog
         }
     }
     
+    /**
+     * Comprobamos el formato de la contraseña: que tenga una letra mayuscula,
+     * un numero y un caracter especial. 
+     * @param password contraseña a comprobar.
+     * @return TRUE = si la contraseña cumple el formato indicado.
+     */
+    private static boolean checkFormatPassword(String password)
+    {
+        boolean incorrectFormat = false;
+        int counter = 0;        
+        
+        while(counter < password.length() && !incorrectFormat)
+        {
+            if(password.charAt(counter) == BAR_SPACE)
+            {
+                incorrectFormat = true;
+            }
+            counter++;
+        }
+        
+        return incorrectFormat;
+    }
+            
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegister;
     private javax.swing.JLabel lblConfirmPassword;
